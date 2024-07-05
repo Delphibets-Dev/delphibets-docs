@@ -136,6 +136,7 @@ Fees:
 - Creator Fee: 0.5% (based on 20000 DPH locked)
 
 #### Flowchart of Bet Lifecycle
+
 ```mermaid
 graph TD;
     A[Create Bet] --> B[Open]

@@ -1,8 +1,8 @@
-<!-- ---
+---
 layout: default-with-style-dark
---- -->
+---
 
-# Parimutuel Pool Bets on Cryptocurrency Prices
+# DELPHIBETS - Parimutuel Pool Bets on Cryptocurrency Prices
 
 ## Introduction
 Parimutuel betting is a unique system where all bets are placed into a pool, and the odds are calculated based on the total amount bet on each outcome. This guide will walk you through the user flow for participating in a Parimutuel pool bet on the OCI/XRD price using the Ociswap DEX Oracle. The pool bets and other types of bets, like P2P bets, are provided by the DELPHIBETS protocol, a set of smart contract running decentralized on the Radix DLT smart contract network.
@@ -121,8 +121,12 @@ Creating a Pool Bet on OCI/XRD:
 
 #### Oracle-Based Calculation:
 - **Ociswap DEX Oracle**:
-  - **Method**: TWAP (Time-Weighted Average Price) over 15 minutes.
-  - **Details**: The price is averaged over trades on the Ociswap DEX to determine the final settlement price.
+  - **Method**: TWAP (Time-Weighted Average Price) over 5 minutes.
+  - **Details**: The price is averaged over trades on the Ociswap DEX to determine the final settlement price. Further details are available on the [Ociswap DEX](https://github.com/ociswap) Oracle repository soon.
+
+- **Religant Price Feed Oracle**:
+  - **Method**: WAP (Weighted Average Price).
+  - **Details**: The Religant Oracle protocol enables a decentralized feed of price data. A set of data nodes query exchanges for up-to-date transactions and submit feed updates to the contract, which employs a consensus mechanism to determine the aggregate price. Data nodes running the Religant node backend software submit feed updates either on a regular interval (if the price is stable), or as soon as the new aggregate price calculated by a node exceeds a specific divergence threshold. At this time, the divergence threshold is set at 2%. This guarantees that the rate retrieved from the Religant oracle component's feed is always within 2% of the rates being used in real transactions on real exchanges. Further details are available on the [Religant Price Feed Oracle](https://github.com/mlabs-haskell/religant-integration-example) repository.
 
 ## Fees
 - **Protocol Fee**: A fixed fee of 1.5% is taken from the total pool.
@@ -135,20 +139,6 @@ Fees:
 - Protocol Fee: 1.5%
 - Creator Fee: 0.5% (based on 20000 DPH locked)
 
-#### Flowchart of Bet Lifecycle
-
-```mermaid
-graph TD;
-    A[Create Bet] --> B[Open]
-    B --> |Users place bets| C[Pending]
-    C --> |Closing time reached| D[Waiting for Settlement]
-    D --> |Settlement date reached, successful| E[Settled]
-    D --> |Settlement date reached, failed| F[Failed]
-    B --> |Creator cancels bet| G[Cancelled]
-    B --> |No other bettors placed bets| H[Expired]
-    E --> |Users withdraw winnings| I[Withdraw Winnings]
-    F --> |Users get amounts back| J[Refund]
-```
 
 ### FAQs
 

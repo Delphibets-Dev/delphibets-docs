@@ -1,5 +1,5 @@
-# # _config.yml
-# markdown: kramdown
+# _config.yml
+markdown: kramdown
 
-# exclude:
-#   - .trunk
+exclude:
+  - .trunk

@@ -1,6 +1,6 @@
----
+<!-- ---
 layout: default-with-style-dark
----
+--- -->
 
 # Parimutuel Pool Bets on Cryptocurrency Prices
 
